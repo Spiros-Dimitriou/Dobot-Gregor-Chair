@@ -17,7 +17,7 @@ print("Connect status:",CON_STR[state])
 
 if (state == dType.DobotConnect.DobotConnect_NoError):
 
-    dType.SetQueuedCmdClear(api)
+    #dType.SetQueuedCmdClear(api)
 
     """The robotic arm moves from point A to point B"""
     dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # Turn on the air pump

@@ -30,7 +30,6 @@ app.post('/move', (req, res) => {
 
 app.post('/screw', (req, res) => {
     exec(`sh ./commands/screw.sh ${req.body.deg}`, (error, stdout, stderr) => {
-    console.log(`${req.body.deg}`);
     console.log(stdout);
     console.log(stderr);
     });
@@ -68,6 +67,22 @@ app.get('/at1', (req, res) => {
     console.log(stderr);
     });
     res.send("Performing Assembly Task 1")
+});
+
+app.get('/at4', (req, res) => {
+    exec(`sh ./commands/at4.sh`, (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    });
+    res.send("Performing Assembly Task 4")
+});
+
+app.post('/placePart', (req, res) => {
+    exec(`sh ./commands/place.sh ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    });
+    res.send("Placing Part")
 });
 
 app.listen(PORT, HOST);

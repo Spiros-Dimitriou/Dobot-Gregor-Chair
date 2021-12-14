@@ -17,6 +17,7 @@ state = dType.ConnectDobot(api, "", 115200)[0]
 print("Connect status:",CON_STR[state])
 
 if (state == dType.DobotConnect.DobotConnect_NoError):
+    dType.SetQueuedCmdClear(api)
     dType.ClearAllAlarmsState(api)
 #Disconnect Dobot
 dType.DisconnectDobot(api)

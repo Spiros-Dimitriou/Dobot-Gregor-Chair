@@ -17,23 +17,15 @@ state = dType.ConnectDobot(api, "", 115200)[0]
 print("Connect status:",CON_STR[state])
 
 if (state == dType.DobotConnect.DobotConnect_NoError):
-
-    #dType.SetQueuedCmdClear(api)
-    pose = dType.GetPose(api)[4:8]
-    print(dType.GetPose(api)[4:8])
     dType.SetEndEffectorGripper(api, 1, 0, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
-    dType.SetPTPCmd(api, dType.PTPMode.PTPMOVJANGLEMode, pose[0], pose[1], pose[2], 150, isQueued = 1)
+    dType.SetPTPCmd(api, 1, float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4]), isQueued=1)[0]
     dType.SetEndEffectorGripper(api, 1, 1, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
-    dType.SetPTPCmd(api, dType.PTPMode.PTPMOVJANGLEMode, pose[0], pose[1], pose[2], 150.0-float(sys.argv[1]), isQueued = 1)
+    dType.SetPTPCmd(api, 1, float(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]), float(sys.argv[8]), isQueued=1)[0]
+    dType.SetEndEffectorGripper(api, 1, 0, isQueued = 1)
+    dType.SetWAITCmd(api, 0.5, isQueued = 1)
     dType.SetEndEffectorGripper(api, 0, 0, isQueued = 1)
-#    dType.SetQueuedCmdStartExec(api)
-
-#    while lastIndex > dType.GetQueuedCmdCurrentIndex(api)[0]:
-#        dType.dSleep(100)
-
-#    dType.SetQueuedCmdStopExec(api)
 
 #Disconnect Dobot
 dType.DisconnectDobot(api)
