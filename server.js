@@ -27,13 +27,20 @@ app.post('/move', (req, res) => {
     res.send("arm movement sent")
 });
 
-
 app.post('/screw', (req, res) => {
     exec(`sh ./commands/screw.sh ${req.body.deg}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
     res.send("arm screwing motion sent")
+});
+
+app.post('/wait', (req, res) => {
+    exec(`sh ./commands/wait.sh ${req.body.time}`, (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    });
+    res.send("Wait command sent")
 });
 
 app.get('/clearAlarms', (req, res) => {
@@ -51,7 +58,6 @@ app.get('/home', (req, res) => {
     });
     res.send("Homing Dobot")
 });
-
 
 app.get('/pose', (req, res) => {
     exec(`sh ./commands/getpose.sh`, (error, stdout, stderr) => {
@@ -75,6 +81,22 @@ app.get('/at4', (req, res) => {
     console.log(stderr);
     });
     res.send("Performing Assembly Task 4")
+});
+
+app.get('/grip', (req, res) => {
+    exec(`sh ./commands/grip.sh`, (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    });
+    res.send("Gripping")
+});
+
+app.get('/ungrip', (req, res) => {
+    exec(`sh ./commands/ungrip.sh`, (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    });
+    res.send("Ungripping")
 });
 
 app.post('/placePart', (req, res) => {

@@ -4,9 +4,6 @@
 
 A NodeJS / BASH / Python project that creates an ```HTTP API``` with functionality abstraction. Then use that ```API``` to create higher abstraction levels and do more complicated tasks. The lowest level (primitive) microservices control the robotic arm, therefore all uS can be called Cyber-*Physical* Microservices.
 
-![](https://lh3.googleusercontent.com/jimfHfhZWVjFj1gLI6mk-okJeKstUFws_EGT5okI-nkobXldGufhh3U8dRj2BKby3oY-tMZRAhRwfxj1LBqgtda1pvezkcd8tsMFiI0yC1ZMgr9UyO4EVCrgvd8W1HyVhg=w1280)
-*(yes i know, it's not plugged in)*
-
 ### General Structure
 
 ##### About the primitive (1st level) microservices:

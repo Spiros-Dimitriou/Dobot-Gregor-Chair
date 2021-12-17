@@ -19,10 +19,10 @@ print("Connect status:",CON_STR[state])
 if (state == dType.DobotConnect.DobotConnect_NoError):
     dType.SetEndEffectorGripper(api, 1, 0, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
-    dType.SetPTPCmd(api, 1, float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4]), isQueued=1)[0]
+    dType.SetPTPCmd(api, dType.PTPMode.PTPJUMPXYZMode, float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4]), isQueued=1)[0]
     dType.SetEndEffectorGripper(api, 1, 1, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
-    dType.SetPTPCmd(api, 1, float(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]), float(sys.argv[8]), isQueued=1)[0]
+    dType.SetPTPCmd(api, dType.PTPMode.PTPJUMPXYZMode, float(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]), float(sys.argv[8]), isQueued=1)[0]
     dType.SetEndEffectorGripper(api, 1, 0, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
     dType.SetEndEffectorGripper(api, 0, 0, isQueued = 1)

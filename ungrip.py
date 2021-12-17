@@ -17,8 +17,9 @@ state = dType.ConnectDobot(api, "", 115200)[0]
 print("Connect status:",CON_STR[state])
 
 if (state == dType.DobotConnect.DobotConnect_NoError):
-    dType.SetHOMEParams(api, 240, 0, 15, -18, isQueued = 0)
-    dType.SetHOMECmd(api, temp = 0, isQueued = 0)
+    dType.SetEndEffectorGripper(api, 1, 0, isQueued = 1)
+    dType.SetWAITCmd(api, 0.5, isQueued = 1)
+    dType.SetEndEffectorGripper(api, 0, 0, isQueued = 1)
 
 #Disconnect Dobot
 dType.DisconnectDobot(api)
