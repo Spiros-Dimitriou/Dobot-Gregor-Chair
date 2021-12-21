@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/demo', (req, res) => {
-	exec('sh ./commands/demo_command.sh', (error, stdout, stderr) => {
+	exec('sh ./commands/demoCommand.sh', (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -60,7 +60,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/pose', (req, res) => {
-    exec(`sh ./commands/getpose.sh`, (error, stdout, stderr) => {
+    exec(`sh ./commands/getPose.sh`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     res.json(stdout.slice(0,-1));

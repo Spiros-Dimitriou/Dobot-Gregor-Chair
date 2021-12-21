@@ -1,2 +1,2 @@
 #export LD_LIBRARY_PATH="/home/pi/Downloads/Dobot-Pi"
-sudo python3 at1.py
+sudo python3 ./commands/at1.py
