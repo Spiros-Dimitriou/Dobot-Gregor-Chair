@@ -20,7 +20,7 @@ if (state == dType.DobotConnect.DobotConnect_NoError):
 
     #dType.SetQueuedCmdClear(api)
     pose = dType.GetPose(api)[4:8]
-    print(dType.GetPose(api)[4:8])
+    #print(dType.GetPose(api)[4:8])
     dType.SetEndEffectorGripper(api, 1, 0, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
     dType.SetPTPCmd(api, dType.PTPMode.PTPMOVJANGLEMode, pose[0], pose[1], pose[2], 150, isQueued = 1)
