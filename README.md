@@ -8,7 +8,7 @@ A NodeJS / Python project that creates an ```HTTP API``` with functionality abst
 
 ##### About the primitive (1st level) microservices:
 
-```HTTP GET``` and ```HTTP POST``` requests tell the server to run some ```BASH``` scripts, which run ```python3``` scripts, which control the arm. Higher levels of abstraction use the previously mentioned ```HTTP``` endpoints to extend the functionality. The whole point is reusability.
+```HTTP GET``` and ```HTTP POST``` requests make subprocesses that run ```python3``` scripts, which control the arm. Higher levels of abstraction use the previously mentioned ```HTTP``` endpoints to extend the functionality. The whole point is reusability and easy customization.
 
 ##### About higher level microservices:
 
@@ -25,4 +25,4 @@ Clone this repo on your RPi
 npm install
 node server.js
 ```
-Then on your favourite browser, go to http://your-raspberry-pi.ip/demo
+Then on your favourite browser, go to http://your-raspberry-pi.ip:8080/demo
