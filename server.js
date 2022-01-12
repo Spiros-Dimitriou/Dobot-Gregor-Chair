@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const {exec} = require('child_process');
+const {execSync} = require('child_process');
 const bodyParser = require('body-parser');
 
 const PORT = 8080;
@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/demo', (req, res) => {
-	exec('python3 ./commands/demoCommand.py', (error, stdout, stderr) => {
+	execSync('python3 ./commands/demoCommand.py', (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -19,7 +19,7 @@ app.get('/demo', (req, res) => {
 });
 
 app.post('/move', (req, res) => {
-    exec(`python3 ./commands/move.py ${req.body.x} ${req.body.y} ${req.body.z} ${req.body.r}`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/move.py ${req.body.x} ${req.body.y} ${req.body.z} ${req.body.r}`, (error, stdout, stderr) => {
     console.log(`${req.body.x} ${req.body.y} ${req.body.z} ${req.body.r}`);
     console.log(stdout);
     console.log(stderr);
@@ -28,7 +28,7 @@ app.post('/move', (req, res) => {
 });
 
 app.post('/screw', (req, res) => {
-    exec(`python3 ./commands/screw.py ${req.body.deg}`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/screw.py ${req.body.deg}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -36,7 +36,7 @@ app.post('/screw', (req, res) => {
 });
 
 app.post('/wait', (req, res) => {
-    exec(`python3 ./commands/wait.py ${req.body.time}`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/wait.py ${req.body.time}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -44,7 +44,7 @@ app.post('/wait', (req, res) => {
 });
 
 app.get('/clearAlarms', (req, res) => {
-    exec(`python3 ./commands/clearAlarms.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/clearAlarms.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -52,7 +52,7 @@ app.get('/clearAlarms', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    exec(`python3 ./commands/home.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/home.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -60,7 +60,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/pose', (req, res) => {
-    exec(`python3 ./commands/getPose.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/getPose.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     res.json(stdout.slice(0,-1));
@@ -68,7 +68,7 @@ app.get('/pose', (req, res) => {
 });
 
 app.get('/at1', (req, res) => {
-    exec(`python3 ./commands/at1.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/at1.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -76,7 +76,7 @@ app.get('/at1', (req, res) => {
 });
 
 app.get('/at4', (req, res) => {
-    exec(`python3 ./commands/at4.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/at4.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -84,7 +84,7 @@ app.get('/at4', (req, res) => {
 });
 
 app.get('/grip', (req, res) => {
-    exec(`python3 ./commands/grip.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/grip.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -92,7 +92,7 @@ app.get('/grip', (req, res) => {
 });
 
 app.get('/ungrip', (req, res) => {
-    exec(`python3 ./commands/ungrip.py`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/ungrip.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
@@ -100,7 +100,7 @@ app.get('/ungrip', (req, res) => {
 });
 
 app.post('/placePart', (req, res) => {
-    exec(`python3 ./commands/place.py ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
+    execSync(`python3 ./commands/place.py ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
