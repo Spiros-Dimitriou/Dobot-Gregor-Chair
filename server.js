@@ -2,6 +2,7 @@
 
 const express = require('express');
 const {execSync} = require('child_process');
+const {exec} = require('child_process');
 const bodyParser = require('body-parser');
 
 const PORT = 8080;
@@ -60,7 +61,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/pose', (req, res) => {
-    execSync(`python3 ./commands/getPose.py`, (error, stdout, stderr) => {
+    exec(`python3 ./commands/getPose.py`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     res.json(stdout.slice(0,-1));
@@ -100,7 +101,7 @@ app.get('/ungrip', (req, res) => {
 });
 
 app.post('/placePart', (req, res) => {
-    execSync(`python3 ./commands/place.py ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
+    exec(`sh ./commands/placePart.sh ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });
