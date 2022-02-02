@@ -101,7 +101,7 @@ app.get('/ungrip', (req, res) => {
 });
 
 app.post('/placePart', (req, res) => {
-    exec(`sh ./commands/placePart.sh ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
+    execSync(`sh ./commands/placePart.sh ${req.body.x1} ${req.body.y1} ${req.body.z1} ${req.body.r1}  ${req.body.x2} ${req.body.y2} ${req.body.z2} ${req.body.r2}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     });

@@ -27,13 +27,11 @@ if (state == dType.DobotConnect.DobotConnect_NoError):
     dType.SetEndEffectorGripper(api, 1, 1, isQueued = 1)
     dType.SetWAITCmd(api, 0.5, isQueued = 1)
     dType.SetPTPCmd(api, dType.PTPMode.PTPMOVJANGLEMode, pose[0], pose[1], pose[2], 150.0-float(sys.argv[1]), isQueued = 1)
-    dType.SetEndEffectorGripper(api, 0, 0, isQueued = 1)
-#    dType.SetQueuedCmdStartExec(api)
-
-#    while lastIndex > dType.GetQueuedCmdCurrentIndex(api)[0]:
-#        dType.dSleep(100)
-
-#    dType.SetQueuedCmdStopExec(api)
+    lastIndex = dType.SetEndEffectorGripper(api, 0, 0, isQueued = 1)[0]
+    dType.SetQueuedCmdStartExec(api)
+    while lastIndex > dType.GetQueuedCmdCurrentIndex(api)[0]:
+        dType.dSleep(100)
+    dType.SetQueuedCmdStopExec(api)
 
 #Disconnect Dobot
 dType.DisconnectDobot(api)

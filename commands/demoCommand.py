@@ -17,7 +17,7 @@ print("Connect status:",CON_STR[state])
 
 if (state == dType.DobotConnect.DobotConnect_NoError):
 
-    #dType.SetQueuedCmdClear(api)
+    dType.SetQueuedCmdClear(api)
 
     """The robotic arm moves from point A to point B"""
     dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # Turn on the air pump
@@ -28,6 +28,10 @@ if (state == dType.DobotConnect.DobotConnect_NoError):
     dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # Turn off the air pump
     dType.SetPTPCmd(api, 1, 207, -150, 60, 0, isQueued=1)  # Rise from point B
     lastIndex = dType.SetPTPCmd(api, 1, 258, -22, 60, 0, isQueued=1)[0]   # Rise from point A
+    dType.SetQueuedCmdStartExec(api)
+    while lastIndex > dType.GetQueuedCmdCurrentIndex(api)[0]:
+        dType.dSleep(100)
+    dType.SetQueuedCmdStopExec(api)
 
 #Disconnect Dobot
 dType.DisconnectDobot(api)
