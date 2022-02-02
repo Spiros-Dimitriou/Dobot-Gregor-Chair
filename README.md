@@ -25,4 +25,6 @@ Clone this repo on your RPi
 npm install
 node server.js
 ```
+Follow the [Dobot library readme file](/commands/libs/readme.txt)
+
 Then on your favourite browser, go to http://your-raspberry-pi.ip:8080/demo
