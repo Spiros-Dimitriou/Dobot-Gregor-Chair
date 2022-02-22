@@ -11,6 +11,6 @@ command 1: sudo apt-get install libqt5serialport5
 command 2: sudo apt-get install libqt5serialport5-dev.
 
 Step4: Run script file of DobotControl.py
-command :  python3 DobotControl.py
+command :  python3 demoCommand.py
 
-
+This [line](https://github.com/Spiros-Dimitriou/Dobot-Gregor-Chair/blob/d735c89336a4fd60277219558d43411092ad6310/commands/libs/DobotDllType.py#L466) may have to be changed
