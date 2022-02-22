@@ -19,12 +19,13 @@ A NodeJS / Python project that creates an ```HTTP API``` with functionality abst
 This is a project using software (robotic arm API) provided by [Dobot](https://www.dobot.cc/) aiming to control a Dobot Magician robotic arm in collaboration with two other robotic arms and perform a series of tasks on two testbenches. This is also part of my integrated master thesis on [Cyber Physical Microservices](https://sites.google.com/view/cyber-physical-microservice/gregor-chair) under the supervision of prof. Kleanthis Thramboulidis.
 
 ### Run it!
-
-Clone this repo on your RPi
+- Have NodeJS/npm installed
+- Clone this repo on your RPi
+- Follow the [Dobot library readme file](/commands/libs/readme.txt)
+- Run the following
 ```
 npm install
 node server.js
 ```
-Follow the [Dobot library readme file](/commands/libs/readme.txt)
 
-Then on your favourite browser, go to http://your-raspberry-pi.ip:8080/demo
+Finally on your browser, go to http://your-raspberry-pi.ip:8080/demo
