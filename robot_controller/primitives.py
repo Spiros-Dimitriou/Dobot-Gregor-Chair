@@ -1,11 +1,7 @@
-import time
-import threading
-import sys
-import os
 from lib.interface import Interface
 
 
-class Primitives:
+class RobotController:
     def __init__(self):
         self.doBot = Interface('/dev/ttyUSB0')
         if self.doBot.connected():
