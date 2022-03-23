@@ -1,7 +1,7 @@
 import composites
 import logging
 
-from flask import Flask, request
+from flask import Flask, request, jsonify, make_response
 from primitives import RobotController
 
 logging.basicConfig(format='%(process)d-%(levelname)s-%(message)s', level=logging.DEBUG)
@@ -21,9 +21,10 @@ def demo():
     try:
         robot_controller.demo()
         logging.debug("demoed")
-        return 200
+        response = jsonify(result="demoed")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
 @app.route("/move", methods=['POST'])
@@ -33,9 +34,10 @@ def move():
         args = list(map(int, body.values()))
         robot_controller.move(*args)
         logging.debug(f"Moving to: {*args,}")
-        return 200
+        response = jsonify(result=f"Moved to: {*args,}")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
 @app.route("/screw", methods=['POST'])
@@ -45,9 +47,10 @@ def screw():
         args = list(map(int, body.values()))
         robot_controller.screw(*args)
         logging.debug(f"Screwing {*args,} degrees")
-        return 200
+        response = jsonify(result=f"Screwed {*args,} degrees")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
 @app.route("/wait", methods=['POST'])
@@ -57,7 +60,8 @@ def wait():
         args = list(map(int, body.values()))
         robot_controller.wait(*args)
         logging.debug(f"Waiting {*args,} milliseconds")
-        return 200
+        response = jsonify(result=f"Waited {*args,} milliseconds")
+        return make_response(response, 200)
     except Exception:
         return 400
 
@@ -69,43 +73,55 @@ def placePart():
         args = list(map(int, body.values()))
         composites.placePart(robot_controller, *args)
         logging.debug(f"Moving part from {args[0:4]} to: {args[4:]}")
-        return 200
+        response = jsonify(result=f"Moved part from {args[0:4]} to: {args[4:]}")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
-@app.route("/grip")
+@app.route("/grip", methods=['POST'])
 def grip():
     try:
         robot_controller.grip()
-        return 200
+        logging.debug("Gripping")
+        response = jsonify(result="gripped")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
-@app.route("/ungrip")
+@app.route("/ungrip", methods=['POST'])
 def ungrip():
     try:
         robot_controller.ungrip()
-        return 200
+        logging.debug("Ungripping")
+        response = jsonify(result="ungripped")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
-@app.route("/clearAlarms")
+@app.route("/clearAlarms", methods=['POST'])
 def clearAlarms():
     try:
         robot_controller.clearAlarms()
-        return 200
+        logging.debug("Clearing Alarms")
+        response = jsonify(result="Cleared Alarms")
+        return make_response(response, 200)
     except Exception:
-        return 400
+        return
 
 
 # TODO: return JSON
 @app.route("/getPose")
 def getPose():
-    pose = robot_controller.getPose()
-    return f"{[pose[0], pose[1], pose[2], pose[3]]}"
+    try:
+        pose = robot_controller.getPose()
+        logging.debug("Getting pose")
+        response = jsonify(result=(pose[0], pose[1], pose[2], pose[3]))
+        return make_response(response, 200)
+    except Exception:
+        return
 
 
 if __name__ == '__main__':

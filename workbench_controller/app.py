@@ -19,25 +19,29 @@ def hello_world():
 def fix():
     global fixture_status
     fixture_status = True
+    logging.debug("Fixing...")
     return 200
 
 
-@app.route("/unfix")
+@app.route("/unfix", methods=["POST"])
 def unfix():
     global fixture_status
     fixture_status = False
+    logging.debug("Unfixing...")
     return 200
 
 
-@app.route("/rotateFixture", methods=['POST'])
+@app.route("/rotateFixture", methods=["POST"])
 def rotateFixture():
     body = request.get_json(force=True)
     pos, deg = body["pos"], body["deg"]
+    logging.debug("Rotating fixture...")
     return 200
 
 
-@app.route("/rotate")
+@app.route("/rotate", methods=["POST"])
 def rotate():
+    logging.debug("Rotating...")
     return 200
 
 
