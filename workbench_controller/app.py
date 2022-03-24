@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask
+from flask import Flask, jsonify, make_response
 from flask import request
 
 
@@ -20,7 +20,8 @@ def fix():
     global fixture_status
     fixture_status = True
     logging.debug("Fixing...")
-    return 200
+    response = jsonify(result="fixed")
+    return make_response(response, 200)
 
 
 @app.route("/unfix", methods=["POST"])
@@ -28,21 +29,24 @@ def unfix():
     global fixture_status
     fixture_status = False
     logging.debug("Unfixing...")
-    return 200
+    response = jsonify(result="unfixed")
+    return make_response(response, 200)
 
 
 @app.route("/rotateFixture", methods=["POST"])
 def rotateFixture():
     body = request.get_json(force=True)
-    pos, deg = body["pos"], body["deg"]
+    args = list(map(int, body.values()))
     logging.debug("Rotating fixture...")
-    return 200
+    response = jsonify(result="rotated fixture")
+    return make_response(response, 200)
 
 
 @app.route("/rotate", methods=["POST"])
 def rotate():
     logging.debug("Rotating...")
-    return 200
+    response = jsonify(result="rotated")
+    return make_response(response, 200)
 
 
 if __name__ == '__main__':
