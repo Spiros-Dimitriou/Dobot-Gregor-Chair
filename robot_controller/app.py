@@ -77,6 +77,19 @@ def placePart():
         return make_response(response, 200)
     except Exception:
         return
+    
+    
+    @app.route("/moveAndScrew", methods=['POST'])
+def moveAndScrew():
+    try:
+        body = request.get_json(force=True)
+        args = list(map(int, body.values()))
+        composites.moveAndScrew(robot_controller, *args)
+        logging.debug(f"Screwing at {args[0:4]} by {args[4:]} degrees")
+        response = jsonify(result=f"Screwing at {args[0:4]} by {args[4:]} degrees")
+        return make_response(response, 200)
+    except Exception:
+        return
 
 
 @app.route("/grip", methods=['POST'])
