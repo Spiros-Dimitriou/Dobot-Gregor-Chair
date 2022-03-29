@@ -79,10 +79,11 @@ def placePart():
         return
     
     
-    @app.route("/moveAndScrew", methods=['POST'])
+@app.route("/moveAndScrew", methods=['POST'])
 def moveAndScrew():
     try:
         body = request.get_json(force=True)
+        logging.debug(f"Body is: {body}")
         args = list(map(int, body.values()))
         composites.moveAndScrew(robot_controller, *args)
         logging.debug(f"Screwing at {args[0:4]} by {args[4:]} degrees")
