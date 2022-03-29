@@ -31,18 +31,6 @@ class RobotController:
         self.doBot.wait(300)
         self.doBot.set_end_effector_gripper(False, False)
 
-    def screw(self, deg):
-        self.doBot.set_end_effector_gripper(True, False)
-        self.doBot.wait(300)
-        pose = self.doBot.get_pose()[0:3]
-        self.doBot.set_point_to_point_command(1, pose[0], pose[1], pose[2], 150)
-        self.doBot.set_end_effector_gripper(True, True)
-        self.doBot.wait(300)
-        self.doBot.set_point_to_point_command(1, pose[0], pose[1], pose[2], 150 - deg)
-        self.doBot.set_end_effector_gripper(True, False)
-        self.doBot.wait(300)
-        self.doBot.set_end_effector_gripper(False, False)
-
     def wait(self, ms):
         self.doBot.wait(ms)
 
