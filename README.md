@@ -29,9 +29,3 @@ flask run
 ```
 
 Finally on your browser, go to http://your-raspberry-pi.ip:5000/demo
-
-### To-do
-- More primitive uS are to be added
-- Create the workbench server
-- Create the Argo yml workflows
-
