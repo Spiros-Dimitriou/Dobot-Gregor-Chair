@@ -40,19 +40,6 @@ def move():
         return
 
 
-@app.route("/screw", methods=['POST'])
-def screw():
-    try:
-        body = request.get_json(force=True)
-        args = list(map(int, body.values()))
-        robot_controller.screw(*args)
-        logging.debug(f"Screwing {*args,} degrees")
-        response = jsonify(result=f"Screwed {*args,} degrees")
-        return make_response(response, 200)
-    except Exception:
-        return
-
-
 @app.route("/wait", methods=['POST'])
 def wait():
     try:
